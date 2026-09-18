@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halloween Wonder Kids</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="halloween-theme">
+    <div class="leaf-layer" aria-hidden="true"></div>
+    <div class="ghost-layer" aria-hidden="true"></div>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <img src="mc-logo.jpg" alt="MC logo" class="brand-logo" />
+          <h1>Halloween Wonder Kids</h1>
+        </div>
+        <nav class="page-nav">
+          <a href="index.html">Dashboard</a>
+          <a href="gadgets.html">Gadgets</a>
+        </nav>
+        <button id="theme-toggle">Dark Mode</button>
+      </header>
+
+      <main class="grid">
+        <section class="card">
+          <h2>Trick-or-Treat Checklist</h2>
+
+          <form id="todo-form">
+            <input
+              id="todo-input"
+              type="text"
+              placeholder="Add a Halloween task"
+              autocomplete="off"
+            />
+            <button type="submit">Add</button>
+          </form>
+
+          <ul id="todo-list"></ul>
+        </section>
+
+        <section class="card quote-card">
+          <h2>Silly Spooky Quote</h2>
+          <p id="quote-text">“Every pumpkin has a little light inside.”</p>
+          <button id="new-quote">New Spooky Quote</button>
+        </section>
+
+        <section class="card clock-card">
+          <h2>Live Clock</h2>
+          <div id="clock">--:--:--</div>
+          <p id="date">--/--/----</p>
+        </section>
+
+        <section class="card fact-card">
+          <h2>Amazing Halloween Fact</h2>
+          <p id="fact-text">Pumpkins are fruits, because they grow from a flower.</p>
+          <button id="new-fact">Reveal a Fact</button>
+        </section>
+
+        <section class="card character-card">
+          <div class="character-art" aria-label="Boo Bean, a friendly cartoon ghost" role="img">
+            <div class="character-eye character-eye-left"></div>
+            <div class="character-eye character-eye-right"></div>
+            <div class="character-cheek character-cheek-left"></div>
+            <div class="character-cheek character-cheek-right"></div>
+          </div>
+          <div class="character-copy">
+            <p class="character-label">Meet Boo Bean</p>
+            <h2>Your Friendly Ghost Guide</h2>
+            <p id="character-message">Hi! I collect amazing facts and friendly Halloween stories.</p>
+            <button id="character-button">Say Hello</button>
+          </div>
+        </section>
+
+        <section class="card creator-card">
+          <img src="mc-pic.jpg" alt="Photo of the creator" class="creator-photo" />
+          <div>
+            <p class="character-label">Created with curiosity</p>
+            <h2>A Little Holiday Magic</h2>
+            <p>Welcome to a friendly world of stories, facts, and seasonal surprises.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">&copy; 2026 MC</footer>
+    </div>
+
+    <script src="falling-leaves.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

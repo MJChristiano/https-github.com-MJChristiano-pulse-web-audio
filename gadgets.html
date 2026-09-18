@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halloween Wonder Gadgets</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="halloween-theme">
+    <div class="leaf-layer" aria-hidden="true"></div>
+    <div class="ghost-layer" aria-hidden="true"></div>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <img src="mc-logo.jpg" alt="MC logo" class="brand-logo" />
+          <h1>Halloween Wonder Gadgets</h1>
+        </div>
+        <nav class="page-nav">
+          <a href="index.html">Dashboard</a>
+          <a href="gadgets.html">Gadgets</a>
+        </nav>
+        <button id="theme-toggle">Dark Mode</button>
+      </header>
+
+      <main class="grid">
+        <section class="card gadget-card mystery-card">
+          <h2>Costume Idea</h2>
+          <p id="costume-output" class="gadget-output">Ready for inspiration?</p>
+          <button id="costume-button">Pick a Costume</button>
+        </section>
+
+        <section class="card gadget-card mystery-card">
+          <h2>Halloween Activity</h2>
+          <p id="activity-output" class="gadget-output">Choose an adventure.</p>
+          <button id="activity-button">Pick an Activity</button>
+        </section>
+
+        <section class="card gadget-card mystery-card">
+          <h2>Treat Generator</h2>
+          <p id="treat-output" class="gadget-output">Something sweet is coming.</p>
+          <button id="treat-button">Choose a Treat</button>
+        </section>
+
+        <section class="card gadget-card timer-card">
+          <h2>Focus Timer</h2>
+          <p id="timer-output" class="gadget-output">25:00</p>
+          <div class="timer-buttons">
+            <button id="start-timer">Start</button>
+            <button id="pause-timer">Pause</button>
+            <button id="reset-timer">Reset</button>
+          </div>
+        </section>
+
+        <section class="card gadget-card greeting-card">
+          <h2>Holiday Greeting</h2>
+          <input id="recipient-name" type="text" placeholder="Enter a name" />
+          <select id="holiday-choice">
+            <option value="Halloween">Halloween</option>
+            <option value="Thanksgiving">Thanksgiving</option>
+            <option value="Christmas">Christmas</option>
+            <option value="New Year">New Year</option>
+          </select>
+          <p id="greeting-output" class="gadget-output">Your greeting will appear here.</p>
+          <button id="greeting-button">Create Greeting</button>
+        </section>
+
+        <section class="card gadget-card mystery-card">
+          <h2>Did You Know?</h2>
+          <p id="halloween-fact">Click the button for an amazing Halloween fact.</p>
+          <button id="fact-button">Reveal a Fact</button>
+        </section>
+
+        <section class="card gadget-card mystery-card">
+          <h2>Silly Spooky Story</h2>
+          <p id="story-text">A friendly story is waiting in the shadows.</p>
+          <div class="story-buttons">
+            <button id="story-button">Tell a Story</button>
+            <button id="read-story-button">Play Narration</button>
+            <button id="pause-story-button">Pause</button>
+            <button id="stop-story-button">Stop</button>
+          </div>
+          <p id="story-status" class="story-status">Narration is ready.</p>
+        </section>
+
+        <section class="card gadget-card countdown-card">
+          <h2>Countdown to Halloween</h2>
+          <p id="halloween-countdown" class="gadget-output">Loading...</p>
+        </section>
+      </main>
+
+      <footer class="site-footer">&copy; 2026 MC</footer>
+    </div>
+
+    <script src="falling-leaves.js"></script>
+    <script src="holiday-data.js"></script>
+    <script src="gadgets.js"></script>
+  </body>
+</html>
