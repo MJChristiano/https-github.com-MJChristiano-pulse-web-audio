@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thankful Moments</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="brand-lockup">
+          <img src="../mc-logo.jpg" alt="MC logo" class="brand-logo" />
+          <div>
+            <p class="eyebrow">A season of gratitude</p>
+            <h1>Thankful Moments</h1>
+          </div>
+        </div>
+        <nav class="page-nav" aria-label="Holiday projects">
+          <a href="../index.html">Halloween</a>
+          <a href="index.html" aria-current="page">Thanksgiving</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero-panel">
+          <p class="eyebrow">Gather, reflect, celebrate</p>
+          <h2>A little gratitude can brighten the whole table.</h2>
+          <p>Save a few thankful thoughts, discover a warm seasonal message, and make space for the people and moments that matter.</p>
+        </section>
+
+        <section class="content-grid">
+          <section class="card gratitude-card">
+            <h2>Gratitude List</h2>
+            <form id="gratitude-form">
+              <label for="gratitude-input">What are you thankful for?</label>
+              <div class="input-row">
+                <input id="gratitude-input" type="text" placeholder="Add a thankful thought" autocomplete="off" />
+                <button type="submit">Add</button>
+              </div>
+            </form>
+            <ul id="gratitude-list"></ul>
+          </section>
+
+          <section class="card thought-card">
+            <p class="eyebrow">Thankful thought</p>
+            <p id="thought-text">Small kindnesses can become big memories.</p>
+            <button id="thought-button">Show Another</button>
+          </section>
+
+          <section class="card gathering-card">
+            <h2>Gathering Countdown</h2>
+            <p id="gathering-countdown" class="countdown">Loading...</p>
+            <p class="muted">Until Thanksgiving Day</p>
+          </section>
+
+          <section class="card creator-card">
+            <img src="../mc-pic.jpg" alt="Photo of the creator" class="creator-photo" />
+            <div>
+              <p class="eyebrow">Created with curiosity</p>
+              <h2>Make room for wonder.</h2>
+              <p>A warm seasonal project from MC.</p>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer>&copy; 2026 MC</footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
