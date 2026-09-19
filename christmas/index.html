@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Winter Wonder</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="snow-layer" aria-hidden="true"></div>
+
+		<div class="page-shell">
+			<header class="site-header">
+				<div class="brand-lockup">
+					<img src="../mc-logo.jpg" alt="MC logo" class="brand-logo" />
+					<div>
+						<p class="eyebrow">A season of wonder</p>
+						<h1>Winter Wonder</h1>
+					</div>
+				</div>
+
+				<nav class="page-nav" aria-label="Holiday projects">
+					<a href="../index.html">Halloween</a>
+					<a href="../thanksgiving/index.html">Thanksgiving</a>
+					<a href="index.html" aria-current="page">Christmas</a>
+				</nav>
+			</header>
+
+			<main>
+				<section class="hero-panel">
+					<p class="eyebrow">Gather, give, celebrate</p>
+					<h2>Make a little room for winter magic.</h2>
+					<p>Discover thoughtful gift ideas, warm seasonal messages, and small moments of wonder.</p>
+				</section>
+
+				<section class="content-grid">
+					<section class="card gift-card">
+						<h2>Gift Idea Generator</h2>
+						<p id="gift-output">A thoughtful surprise is waiting.</p>
+						<button id="gift-button">Find a Gift Idea</button>
+					</section>
+
+					<section class="card message-card">
+						<p class="eyebrow">Winter message</p>
+						<p id="message-output">Kindness is a gift anyone can give.</p>
+						<button id="message-button">Show Another</button>
+					</section>
+
+					<section class="card countdown-card">
+						<h2>Countdown to Christmas</h2>
+						<p id="christmas-countdown" class="countdown">Loading...</p>
+						<p class="muted">Until Christmas Day</p>
+					</section>
+
+					<section class="card creator-card">
+						<img src="../mc-pic.jpg" alt="Photo of the creator" class="creator-photo" />
+						<div>
+							<p class="eyebrow">Created with curiosity</p>
+							<h2>Warm wishes from MC.</h2>
+							<p>A bright seasonal project for sharing wonder.</p>
+						</div>
+					</section>
+				</section>
+			</main>
+
+			<footer>&copy; 2026 MC</footer>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
