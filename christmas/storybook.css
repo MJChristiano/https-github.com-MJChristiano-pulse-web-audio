@@ -1,0 +1,202 @@
+:root {
+  --night: #101d3a;
+  --night-soft: #1e3157;
+  --snow: #f7fbff;
+  --gold: #f2c66d;
+  --muted: #c4d0e5;
+  --rose: #df8790;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--night);
+  color: var(--snow);
+  font-family: Georgia, serif;
+  overflow-x: hidden;
+}
+
+button {
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 12px 20px;
+  background: var(--gold);
+  color: var(--night);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+button:hover {
+  background: #ffe19b;
+}
+
+.snow-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 12%, rgba(242, 198, 109, 0.16), transparent 24%),
+    linear-gradient(180deg, #101d3a 0%, #17294d 65%, #243e63 100%);
+}
+
+.snow-scene::before,
+.snow-scene::after {
+  position: absolute;
+  bottom: -6vh;
+  width: 56vw;
+  height: 22vh;
+  border-radius: 50% 50% 0 0;
+  background: rgba(247, 251, 255, 0.96);
+  content: '';
+}
+
+.snow-scene::before {
+  left: -12vw;
+  transform: rotate(5deg);
+}
+
+.snow-scene::after {
+  right: -12vw;
+  transform: rotate(-5deg);
+}
+
+.storybook-shell {
+  position: relative;
+  z-index: 1;
+  width: min(1000px, 100% - 32px);
+  margin: 0 auto;
+  padding: 24px 0 48px;
+}
+
+.story-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+}
+
+.story-nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.story-nav a:hover {
+  color: var(--gold);
+}
+
+.story-hero,
+.chapter {
+  max-width: 720px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.story-hero {
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12vh 0 16vh;
+}
+
+.chapter-label {
+  margin: 0 0 12px;
+  color: var(--gold);
+  font-family: Arial, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 760px;
+  margin-bottom: 24px;
+  font-size: clamp(3.2rem, 10vw, 7.2rem);
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.story-intro,
+.chapter p {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.7;
+}
+
+.chapter {
+  min-height: 70vh;
+  padding: 14vh 0;
+}
+
+.chapter-right {
+  margin-right: 0;
+  margin-left: auto;
+  padding-left: 12%;
+  border-left: 1px solid rgba(242, 198, 109, 0.35);
+}
+
+.story-reveal {
+  color: var(--rose) !important;
+  font-style: italic;
+}
+
+footer {
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .storybook-shell {
+    width: min(100% - 24px, 560px);
+  }
+
+  .story-nav {
+    flex-wrap: wrap;
+  }
+
+  .story-hero {
+    min-height: 70vh;
+  }
+
+  .chapter {
+    min-height: 60vh;
+    padding: 10vh 0;
+  }
+
+  .chapter-right {
+    padding-left: 20px;
+  }
+}

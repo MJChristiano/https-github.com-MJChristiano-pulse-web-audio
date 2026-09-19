@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Lantern in the Snow</title>
+    <link rel="stylesheet" href="storybook.css" />
+  </head>
+  <body>
+    <div class="snow-scene" aria-hidden="true"></div>
+    <main class="storybook-shell">
+      <nav class="story-nav" aria-label="Story navigation">
+        <a href="index.html">Winter Wonder</a>
+        <a href="../index.html">Halloween</a>
+        <a href="../thanksgiving/index.html">Thanksgiving</a>
+      </nav>
+
+      <section class="story-hero" aria-labelledby="story-title">
+        <p class="chapter-label">A Christmas story in three chapters</p>
+        <h1 id="story-title">The Lantern in the Snow</h1>
+        <p class="story-intro">On the quietest night of winter, a little lantern began looking for someone who needed its light.</p>
+        <button id="begin-story">Begin the story</button>
+      </section>
+
+      <section class="chapter" id="chapter-one">
+        <p class="chapter-label">Chapter One</p>
+        <h2>The path appeared</h2>
+        <p>Snow covered every road in the village. Then, beneath the moon, a trail of golden footprints appeared beside the old pine trees.</p>
+      </section>
+
+      <section class="chapter chapter-right" id="chapter-two">
+        <p class="chapter-label">Chapter Two</p>
+        <h2>A small light waited</h2>
+        <p>At the end of the trail sat a lantern no taller than a teacup. Its flame did not burn hot. It glowed like a kind thought.</p>
+        <p id="story-reveal" class="story-reveal" aria-live="polite">The lantern has a secret.</p>
+        <button id="reveal-secret">Reveal the secret</button>
+      </section>
+
+      <section class="chapter" id="chapter-three">
+        <p class="chapter-label">Chapter Three</p>
+        <h2>Light is meant to travel</h2>
+        <p>The lantern found its way from window to window, leaving every home a little warmer than before. By morning, the whole village was glowing.</p>
+      </section>
+
+      <footer>&copy; 2026 MC</footer>
+    </main>
+    <script src="storybook.js"></script>
+  </body>
+</html>
