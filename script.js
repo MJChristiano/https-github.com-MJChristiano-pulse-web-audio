@@ -1,9 +1,11 @@
 const form = document.getElementById('todo-form');
 const input = document.getElementById('todo-input');
 const list = document.getElementById('todo-list');
+const clearTasksButton = document.getElementById('clear-tasks');
 
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
+const THEME_KEY = 'halloweenTheme';
 
 const quoteText = document.getElementById('quote-text');
 const newQuoteBtn = document.getElementById('new-quote');
@@ -11,10 +13,16 @@ const clock = document.getElementById('clock');
 const date = document.getElementById('date');
 const factText = document.getElementById('fact-text');
 const newFactBtn = document.getElementById('new-fact');
+const beatStatus = document.getElementById('beat-status');
+const beatGrid = document.getElementById('beat-grid');
+const playBeatButton = document.getElementById('play-beat');
+const stopBeatButton = document.getElementById('stop-beat');
+const clearBeatButton = document.getElementById('clear-beat');
 const characterMessage = document.getElementById('character-message');
 const characterButton = document.getElementById('character-button');
 
-let tasks = ['Find a costume', 'Decorate a pumpkin'];
+const savedTasks = localStorage.getItem('halloweenTasks');
+let tasks = savedTasks ? JSON.parse(savedTasks) : ['Find a costume', 'Decorate a pumpkin'];
 
 const quotes = [
   'Every pumpkin has a little light inside.',
@@ -45,6 +53,7 @@ const booMessages = [
 
 function renderList() {
   list.innerHTML = '';
+  localStorage.setItem('halloweenTasks', JSON.stringify(tasks));
 
   tasks.forEach((task, index) => {
     const li = document.createElement('li');
@@ -79,8 +88,22 @@ form.addEventListener('submit', (event) => {
   }
 });
 
+clearTasksButton.addEventListener('click', () => {
+  tasks = [];
+  renderList();
+});
+
+function applyTheme(isDark) {
+  body.classList.toggle('dark', isDark);
+  themeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+  localStorage.setItem(THEME_KEY, String(isDark));
+}
+
+const savedTheme = localStorage.getItem(THEME_KEY) === 'true';
+applyTheme(savedTheme);
+
 themeToggle.addEventListener('click', () => {
-  body.classList.toggle('dark');
+  applyTheme(!body.classList.contains('dark'));
 });
 
 function showRandomQuote() {
@@ -97,6 +120,149 @@ function showRandomFact() {
 
 newFactBtn.addEventListener('click', showRandomFact);
 
+let audioContext;
+let beatTimer;
+let beatStep = 0;
+
+const soundDefinitions = {
+  thump: { frequency: 110, type: 'sine' },
+  bell: { frequency: 330, type: 'triangle' },
+  wobble: { frequency: 165, type: 'sawtooth' },
+  sparkle: { frequency: 660, type: 'sine' }
+};
+
+const beatPattern = {
+  thump: [true, false, false, false, true, false, false, false],
+  bell: [false, false, true, false, false, false, true, false],
+  wobble: [false, true, false, false, false, true, false, false],
+  sparkle: [false, false, false, true, false, false, false, true]
+};
+
+function renderBeatGrid() {
+  beatGrid.innerHTML = '';
+
+  Object.keys(beatPattern).forEach((soundName) => {
+    const row = document.createElement('div');
+    row.className = 'beat-row';
+
+    const label = document.createElement('span');
+    label.className = 'beat-row-label';
+    label.textContent = soundName;
+    row.appendChild(label);
+
+    beatPattern[soundName].forEach((isActive, step) => {
+      const cell = document.createElement('button');
+      cell.className = 'beat-cell';
+      cell.type = 'button';
+      cell.dataset.sound = soundName;
+      cell.dataset.step = step;
+      cell.setAttribute('aria-label', `${soundName}, step ${step + 1}`);
+      cell.setAttribute('aria-pressed', isActive);
+      cell.classList.toggle('active', isActive);
+
+      cell.addEventListener('click', () => {
+        beatPattern[soundName][step] = !beatPattern[soundName][step];
+        cell.classList.toggle('active', beatPattern[soundName][step]);
+        cell.setAttribute('aria-pressed', beatPattern[soundName][step]);
+
+        audioContext ??= new AudioContext();
+
+        if (audioContext.state === 'suspended') {
+          audioContext.resume();
+        }
+
+        playTone(soundName, audioContext.currentTime);
+        beatStatus.textContent = `${soundName} sound, step ${step + 1}.`;
+      });
+
+      row.appendChild(cell);
+    });
+
+    beatGrid.appendChild(row);
+  });
+}
+
+function playTone(soundName, startTime) {
+  const { frequency, type } = soundDefinitions[soundName];
+  const oscillator = audioContext.createOscillator();
+  const volume = audioContext.createGain();
+
+  oscillator.frequency.value = frequency;
+  oscillator.type = type;
+
+  volume.gain.setValueAtTime(0.1, startTime);
+  volume.gain.exponentialRampToValueAtTime(0.001, startTime + 0.18);
+
+  oscillator.connect(volume);
+  volume.connect(audioContext.destination);
+
+  oscillator.start(startTime);
+  oscillator.stop(startTime + 0.18);
+}
+
+document.querySelectorAll('.sound-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    audioContext ??= new AudioContext();
+
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
+
+    playTone(button.dataset.sound, audioContext.currentTime);
+    beatStatus.textContent = `${button.textContent} sound preview.`;
+  });
+});
+
+function playBeatStep() {
+  const start = audioContext.currentTime;
+
+  Object.keys(beatPattern).forEach((soundName) => {
+    if (beatPattern[soundName][beatStep]) {
+      playTone(soundName, start);
+    }
+  });
+
+  document.querySelectorAll('.beat-cell').forEach((cell) => {
+    cell.classList.toggle('current', Number(cell.dataset.step) === beatStep);
+  });
+
+  beatStep = (beatStep + 1) % 8;
+}
+
+function stopBeat() {
+  clearInterval(beatTimer);
+  beatTimer = undefined;
+  beatStep = 0;
+  document.querySelectorAll('.beat-cell').forEach((cell) => cell.classList.remove('current'));
+}
+
+playBeatButton.addEventListener('click', () => {
+  audioContext ??= new AudioContext();
+
+  if (audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+
+  stopBeat();
+  playBeatStep();
+  beatTimer = setInterval(playBeatStep, 250);
+  beatStatus.textContent = 'Playing your spooky beat.';
+});
+
+stopBeatButton.addEventListener('click', () => {
+  stopBeat();
+  beatStatus.textContent = 'Beat stopped.';
+});
+
+clearBeatButton.addEventListener('click', () => {
+  stopBeat();
+  Object.keys(beatPattern).forEach((soundName) => {
+    beatPattern[soundName].fill(false);
+  });
+  renderBeatGrid();
+  beatStatus.textContent = 'Your beat is clear. Choose some sounds.';
+});
+
 characterButton.addEventListener('click', () => {
   const availableMessages = booMessages.filter(
     (message) => message !== characterMessage.textContent
@@ -105,8 +271,10 @@ characterButton.addEventListener('click', () => {
   const message = availableMessages[randomIndex];
   characterMessage.textContent = message;
 
-  speechSynthesis.cancel();
-  speechSynthesis.speak(new SpeechSynthesisUtterance(message));
+  if ('speechSynthesis' in window) {
+    speechSynthesis.cancel();
+    speechSynthesis.speak(new SpeechSynthesisUtterance(message));
+  }
 });
 
 function updateClock() {
@@ -130,5 +298,6 @@ function updateClock() {
 renderList();
 showRandomQuote();
 showRandomFact();
+renderBeatGrid();
 updateClock();
 setInterval(updateClock, 1000);

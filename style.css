@@ -23,6 +23,13 @@ body {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
+button,
+input,
+.card,
+.page-nav a {
+  transition: all 0.2s ease;
+}
+
 body.dark {
   background: #111827;
   color: #f9fafb;
@@ -169,7 +176,7 @@ body.dark {
   object-fit: cover;
   box-shadow: 0 5px 0 #e86f2d;
 }
-}
+
 
 .page-nav {
   display: flex;
@@ -206,6 +213,11 @@ body.dark .card {
 #todo-form {
   display: flex;
   gap: 10px;
+  margin-bottom: 18px;
+}
+
+#clear-tasks {
+  background: #167d80;
   margin-bottom: 18px;
 }
 
@@ -354,6 +366,62 @@ button {
   line-height: 1.6;
 }
 
+.beat-maker-card {
+  grid-column: 1 / -1;
+}
+
+.beat-sounds,
+.beat-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.beat-controls {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.sound-button {
+  background: #167d80;
+}
+
+.beat-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.beat-row {
+  display: grid;
+  grid-template-columns: 72px repeat(8, 1fr);
+  gap: 8px;
+}
+
+.beat-row-label {
+  align-self: center;
+  color: #241b2f;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.beat-cell {
+  min-height: 34px;
+  padding: 6px;
+  background: #ead8ff;
+  border: 2px solid transparent;
+}
+
+.beat-cell.active {
+  background: #e86f2d;
+}
+
+.beat-cell.current {
+  border-color: #241b2f;
+  box-shadow: 0 0 0 2px #fff7e8;
+}
+
 .character-card {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -430,7 +498,6 @@ button {
   color: #167d80;
   font-size: 0.9rem;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 .character-copy h2 {

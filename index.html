@@ -38,6 +38,8 @@
             <button type="submit">Add</button>
           </form>
 
+          <button id="clear-tasks" type="button">Clear all</button>
+
           <ul id="todo-list"></ul>
         </section>
 
@@ -57,6 +59,23 @@
           <h2>Amazing Halloween Fact</h2>
           <p id="fact-text">Pumpkins are fruits, because they grow from a flower.</p>
           <button id="new-fact">Reveal a Fact</button>
+        </section>
+
+        <section class="card beat-maker-card">
+          <h2>Make a Spooky Beat</h2>
+          <p id="beat-status">Choose sounds, then press play.</p>
+          <div class="beat-sounds" aria-label="Sound choices">
+            <button class="sound-button" type="button" data-sound="thump">Thump</button>
+            <button class="sound-button" type="button" data-sound="bell">Bell</button>
+            <button class="sound-button" type="button" data-sound="wobble">Wobble</button>
+            <button class="sound-button" type="button" data-sound="sparkle">Sparkle</button>
+          </div>
+          <div id="beat-grid" class="beat-grid" aria-label="Eight-step beat pattern"></div>
+          <div class="beat-controls">
+            <button id="play-beat" type="button">Play Beat</button>
+            <button id="stop-beat" type="button">Stop</button>
+            <button id="clear-beat" type="button">Clear</button>
+          </div>
         </section>
 
         <section class="card character-card">
